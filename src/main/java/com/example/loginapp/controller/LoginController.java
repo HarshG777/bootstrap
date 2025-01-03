@@ -12,7 +12,11 @@ public class LoginController {
     @GetMapping("/")
     public String showLoginForm() {
         int i = 10;
-        int i = 10;
+
+        if(i != 10){}
+
+        if(i != 10){}
+        
         return "login";
     }
 
