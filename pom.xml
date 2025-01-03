@@ -121,6 +121,46 @@
                 </executions>
             </plugin>
 
+            <!-- PMD Plugin for Static Code Analysis -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version> <!-- PMD version -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal> <!-- Run PMD check -->
+                        </goals>
+                        <configuration>
+                            <rulesets>
+                                <ruleset>pmd-rules.xml</ruleset> <!-- Custom PMD ruleset, if applicable -->
+                            </rulesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- CPD Plugin for Code Duplication Detection -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>cpd</goal> <!-- Perform Copy-Paste Detection -->
+                        </goals>
+                        <configuration>
+                            <minimumTokens>100</minimumTokens> <!-- Minimum size of duplicate code -->
+                            <languages>
+                                <language>java</language> <!-- Language for duplication detection -->
+                            </languages>
+                            <outputFile>target/cpd.xml</outputFile> <!-- Path to output duplication report -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
