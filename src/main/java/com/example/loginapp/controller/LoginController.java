@@ -21,9 +21,6 @@ public class LoginController {
         if ("student".equals(username) && "Password123".equals(password)) {
             model.addAttribute("message", "Logged In Successfully");
             return "success";
-            return "success";
-            return "success";
-            return "success";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";
