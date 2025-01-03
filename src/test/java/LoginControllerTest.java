@@ -1,12 +1,12 @@
+package com.example.loginapp.controller;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import com.example.loginapp.controller.LoginController;
+import com.example.loginapp.LoginAppApplication; // Import your main application class
 
-
-
-@SpringBootTest
+@SpringBootTest(classes = LoginAppApplication.class) // Specify the main application class
 public class LoginControllerTest {
 
     @Autowired
@@ -19,3 +19,4 @@ public class LoginControllerTest {
 
     // Add more tests for the methods in LoginController
 }
+
