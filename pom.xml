@@ -14,14 +14,13 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <selenium.version>3.141.59</selenium.version>
-        <spring.boot.version>2.5.4</spring.boot.version>
+        <spring.boot.version>2.5.4</spring.boot.version> <!-- Spring Boot Version -->
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 -->
+        <!-- JUnit 5 Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -35,29 +34,35 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Selenium -->
+        <!-- Selenium WebDriver Dependency -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
-
-        <!-- Spring Boot -->
+    
+        <!-- Spring Boot Starter Web Dependency -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+
+        <!-- Spring Boot Starter Thymeleaf Dependency -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+
+        <!-- Spring Boot Starter Security Dependency -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+
+        <!-- Spring Boot Starter Test Dependency (For testing purposes) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -65,11 +70,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ByteBuddy -->
+        <!-- ByteBuddy Dependency -->
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.12.7</version>
+            <version>1.12.7</version> <!-- Ensure compatibility -->
         </dependency>
     </dependencies>
 
@@ -90,15 +95,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.0.0-M5</version> <!-- Use a more recent version -->
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <dependenciesToScan>
+                        <dependency>org.junit.jupiter:junit-jupiter-api</dependency>
+                    </dependenciesToScan>
                 </configuration>
             </plugin>
 
-            <!-- JaCoCo Plugin -->
+            <!-- JaCoCo Maven Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -113,45 +121,47 @@
                 </executions>
             </plugin>
 
-            <!-- PMD Plugin (Merged Configurations) -->
+            <!-- PMD Plugin for Static Code Analysis -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.15.0</version>
+                <version>3.15.0</version> <!-- PMD version -->
                 <executions>
-                    <!-- PMD Check -->
                     <execution>
-                        <id>pmd</id>
-                        <phase>verify</phase>
                         <goals>
-                            <goal>pmd</goal>
-                            <goal>check</goal>
+                            <goal>check</goal> <!-- Run PMD check -->
                         </goals>
                         <configuration>
                             <rulesets>
-                                <ruleset>pmd-rules.xml</ruleset>
+                                <ruleset>pmd-rules.xml</ruleset> <!-- Custom PMD ruleset, if applicable -->
                             </rulesets>
-                        </configuration>
-                    </execution>
-                    <!-- CPD -->
-                    <execution>
-                        <id>cpd</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>cpd</goal>
-                        </goals>
-                        <configuration>
-                            <minimumTokens>100</minimumTokens>
-                            <languages>
-                                <language>java</language>
-                            </languages>
-                            <outputFile>target/cpd.xml</outputFile>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- Spring Boot Plugin -->
+            <!-- CPD Plugin for Code Duplication Detection -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>cpd</goal> <!-- Perform Copy-Paste Detection -->
+                        </goals>
+                        <configuration>
+                            <minimumTokens>100</minimumTokens> <!-- Minimum size of duplicate code -->
+                            <languages>
+                                <language>java</language> <!-- Language for duplication detection -->
+                            </languages>
+                            <outputFile>target/cpd.xml</outputFile> <!-- Path to output duplication report -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
