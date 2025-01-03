@@ -1,5 +1,5 @@
 package com.example.loginapp;
-package com.example.loginapp;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
